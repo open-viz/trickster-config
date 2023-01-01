@@ -1,0 +1,12 @@
+apiVersion: trickstercache.org/v1alpha1
+kind: TracingConfig
+metadata:
+  labels:
+    app.kubernetes.io/name: tracingconfig
+    app.kubernetes.io/instance: tracingconfig-sample
+    app.kubernetes.io/part-of: trickster-config
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: trickster-config
+  name: tracingconfig-sample
+spec:
+  # TODO(user): Add fields here

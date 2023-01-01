@@ -1,0 +1,61 @@
+domain: org
+layout:
+- go.kubebuilder.io/v3
+projectName: trickster-config
+repo: go.openviz.dev/trickster-config
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: Trickster
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: Backend
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: Cache
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: TracingConfig
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: Rule
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: org
+  group: trickstercache
+  kind: RequestRewriter
+  path: go.openviz.dev/trickster-config/api/v1alpha1
+  version: v1alpha1
+version: "3"
