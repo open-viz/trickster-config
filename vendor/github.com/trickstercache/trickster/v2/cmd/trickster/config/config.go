@@ -34,17 +34,20 @@ import (
 	lo "github.com/trickstercache/trickster/v2/pkg/observability/logging/options"
 	mo "github.com/trickstercache/trickster/v2/pkg/observability/metrics/options"
 	tracing "github.com/trickstercache/trickster/v2/pkg/observability/tracing/options"
+	no "github.com/trickstercache/trickster/v2/pkg/proxy/nats/options"
 	rewriter "github.com/trickstercache/trickster/v2/pkg/proxy/request/rewriter"
 	rwopts "github.com/trickstercache/trickster/v2/pkg/proxy/request/rewriter/options"
 	"github.com/trickstercache/trickster/v2/pkg/util/yamlx"
 
-	"gopkg.in/yaml.v2"
+	"sigs.k8s.io/yaml"
 )
 
 // Config is the main configuration object
 type Config struct {
 	// Main is the primary MainConfig section
 	Main *MainConfig `json:"main,omitempty"`
+	// Nats is provides for transport via NATS.io
+	Nats *no.Options `json:"nats,omitempty"`
 	// Backends is a map of BackendOptionss
 	Backends map[string]*bo.Options `json:"backends,omitempty"`
 	// Caches is a map of CacheConfigs
@@ -182,7 +185,7 @@ func NewConfig() *Config {
 func (c *Config) loadFile(flags *Flags) error {
 	b, err := os.ReadFile(flags.ConfigPath)
 	if err != nil {
-		c.setDefaults(yamlx.KeyLookup{})
+		c.SetDefaults(yamlx.KeyLookup{})
 		return err
 	}
 	return c.loadYAMLConfig(string(b), flags)
@@ -190,17 +193,16 @@ func (c *Config) loadFile(flags *Flags) error {
 
 // loadYAMLConfig loads application configuration from a YAML-formatted byte slice.
 func (c *Config) loadYAMLConfig(yml string, flags *Flags) error {
-
 	err := yaml.Unmarshal([]byte(yml), &c)
 	if err != nil {
 		return err
 	}
 	md, err := yamlx.GetKeyList(yml)
 	if err != nil {
-		c.setDefaults(yamlx.KeyLookup{})
+		c.SetDefaults(yamlx.KeyLookup{})
 		return err
 	}
-	err = c.setDefaults(md)
+	err = c.SetDefaults(md)
 	if err == nil {
 		c.Main.configFilePath = flags.ConfigPath
 		c.Main.configLastModified = c.CheckFileLastModified()
@@ -220,8 +222,7 @@ func (c *Config) CheckFileLastModified() time.Time {
 	return file.ModTime()
 }
 
-func (c *Config) setDefaults(metadata yamlx.KeyLookup) error {
-
+func (c *Config) SetDefaults(metadata yamlx.KeyLookup) error {
 	c.Resources.metadata = metadata
 
 	var err error
@@ -289,7 +290,6 @@ func (c *Config) processPprofConfig() error {
 
 // Clone returns an exact copy of the subject *Config
 func (c *Config) Clone() *Config {
-
 	nc := NewConfig()
 	delete(nc.Caches, "default")
 	delete(nc.Backends, "default")
@@ -356,7 +356,6 @@ func (c *Config) Clone() *Config {
 
 // IsStale returns true if the running config is stale versus the
 func (c *Config) IsStale() bool {
-
 	c.Main.stalenessCheckLock.Lock()
 	defer c.Main.stalenessCheckLock.Unlock()
 
@@ -369,8 +368,7 @@ func (c *Config) IsStale() bool {
 		c.ReloadConfig = reload.New()
 	}
 
-	c.Main.configRateLimitTime =
-		time.Now().Add(time.Millisecond * time.Duration(c.ReloadConfig.RateLimitMS))
+	c.Main.configRateLimitTime = time.Now().Add(time.Millisecond * time.Duration(c.ReloadConfig.RateLimitMS))
 	t := c.CheckFileLastModified()
 	if t.IsZero() {
 		return false
@@ -398,7 +396,6 @@ func (c *Config) String() string {
 	}
 
 	return ""
-
 }
 
 // ConfigFilePath returns the file path from which this configuration is based

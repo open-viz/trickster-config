@@ -37,7 +37,7 @@ import (
 	"github.com/trickstercache/trickster/v2/pkg/util/yamlx"
 
 	"github.com/gorilla/mux"
-	"gopkg.in/yaml.v2"
+	"sigs.k8s.io/yaml"
 )
 
 var restrictedOriginNames = map[string]interface{}{"": true, "frontend": true}
@@ -47,7 +47,6 @@ type Lookup map[string]*Options
 
 // Options is a collection of configurations for Trickster backends
 type Options struct {
-
 	// HTTP and Proxy Configurations
 	//
 	// Hosts identifies the frontend hostnames this backend should handle (virtual hosting)
@@ -74,7 +73,7 @@ type Options struct {
 	// timestamps worth of data to store in cache for each query
 	TimeseriesRetentionFactor int `json:"timeseries_retention_factor,omitempty"`
 	// TimeseriesEvictionMethodName specifies which methodology ("oldest", "lru") is used to identify
-	//timeseries to evict from a full cache object
+	// timeseries to evict from a full cache object
 	TimeseriesEvictionMethodName string `json:"timeseries_eviction_method,omitempty"`
 	// BackfillToleranceMS prevents values with timestamps newer than the provided number of
 	// milliseconds from being cached. this allows propagation of upstream backfill operations
@@ -127,6 +126,9 @@ type Options struct {
 	ALBOptions *ao.Options `json:"alb,omitempty"`
 	// Prometheus holds options specific to prometheus backends
 	Prometheus *prop.Options `json:"prometheus,omitempty"`
+
+	// Transport is the transport configuration for the Backend
+	Transport *TransportOptions `json:"transport,omitempty"`
 
 	// TLS is the TLS Configuration for the Frontend and Backend
 	TLS *to.Options `json:"tls,omitempty"`
@@ -246,6 +248,7 @@ func New() *Options {
 		MaxShardSize:                 time.Duration(DefaultTimeseriesShardSize) * time.Millisecond,
 		ShardStepMS:                  DefaultTimeseriesShardStep,
 		ShardStep:                    time.Duration(DefaultTimeseriesShardStep) * time.Millisecond,
+		Transport:                    &TransportOptions{},
 		TLS:                          &to.Options{},
 		Timeout:                      time.Millisecond * DefaultBackendTimeoutMS,
 		TimeoutMS:                    DefaultBackendTimeoutMS,
@@ -261,7 +264,6 @@ func New() *Options {
 
 // Clone returns an exact copy of an *backends.Options
 func (o *Options) Clone() *Options {
-
 	no := &Options{}
 	no.DearticulateUpstreamRanges = o.DearticulateUpstreamRanges
 	no.BackfillTolerance = o.BackfillTolerance
@@ -335,6 +337,10 @@ func (o *Options) Clone() *Options {
 			m[c] = t
 		}
 		no.NegativeCache = m
+	}
+
+	if o.Transport != nil {
+		no.Transport = o.Transport.Clone()
 	}
 
 	if o.TLS != nil {
@@ -503,7 +509,6 @@ func SetDefaults(
 	backends Lookup,
 	activeCaches map[string]interface{},
 ) (*Options, error) {
-
 	if metadata == nil {
 		return nil, ErrInvalidMetadata
 	}
@@ -705,7 +710,6 @@ func SetDefaults(
 // CloneYAMLSafe returns a copy of the Options that is safe to export to YAML without
 // exposing credentials (by masking known credential fields with "*****")
 func (o *Options) CloneYAMLSafe() *Options {
-
 	co := o.Clone()
 	for _, w := range co.Paths {
 		w.Handler = nil
