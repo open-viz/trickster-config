@@ -17,19 +17,17 @@ limitations under the License.
 package v1alpha1
 
 import (
+	bo "github.com/trickstercache/trickster/v2/pkg/backends/options"
+	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // BackendSpec defines the desired state of Backend
 type BackendSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Backend. Edit backend_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	bo.Options `json:",inline"`
+	// secret information about the secret data to project
+	// +optional
+	Secret *core.SecretProjection `json:"secret,omitempty"`
 }
 
 // BackendStatus defines the observed state of Backend

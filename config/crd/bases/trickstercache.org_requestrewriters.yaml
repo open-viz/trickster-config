@@ -35,10 +35,13 @@ spec:
           spec:
             description: RequestRewriterSpec defines the desired state of RequestRewriter
             properties:
-              foo:
-                description: Foo is an example field of RequestRewriter. Edit requestrewriter_types.go
-                  to remove/update
-                type: string
+              instructions:
+                description: RewriteList is a list of Rewrite Instructions
+                items:
+                  items:
+                    type: string
+                  type: array
+                type: array
             type: object
           status:
             description: RequestRewriterStatus defines the observed state of RequestRewriter

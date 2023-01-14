@@ -17,19 +17,17 @@ limitations under the License.
 package v1alpha1
 
 import (
+	tracing "github.com/trickstercache/trickster/v2/pkg/observability/tracing/options"
+	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // TracingConfigSpec defines the desired state of TracingConfig
 type TracingConfigSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of TracingConfig. Edit tracingconfig_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	tracing.Options `json:",inline"`
+	// secret information about the secret data to project
+	// +optional
+	Secret *core.SecretProjection `json:"secret,omitempty"`
 }
 
 // TracingConfigStatus defines the observed state of TracingConfig

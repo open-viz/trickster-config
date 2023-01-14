@@ -17,19 +17,13 @@ limitations under the License.
 package v1alpha1
 
 import (
+	rwopts "github.com/trickstercache/trickster/v2/pkg/proxy/request/rewriter/options"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // RequestRewriterSpec defines the desired state of RequestRewriter
 type RequestRewriterSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of RequestRewriter. Edit requestrewriter_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	rwopts.Options `json:",inline"`
 }
 
 // RequestRewriterStatus defines the observed state of RequestRewriter
