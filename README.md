@@ -13,11 +13,11 @@ You’ll need a Kubernetes cluster to run against. You can use [KIND](https://si
 ```sh
 > kubebuilder init --domain org --skip-go-version-check
 > kubebuilder create api --group trickstercache --version v1alpha1 --kind Trickster
-> kubebuilder create api --group trickstercache --version v1alpha1 --kind Backend
-> kubebuilder create api --group trickstercache --version v1alpha1 --kind Cache
-> kubebuilder create api --group trickstercache --version v1alpha1 --kind TracingConfig
-> kubebuilder create api --group trickstercache --version v1alpha1 --kind Rule
-> kubebuilder create api --group trickstercache --version v1alpha1 --kind RequestRewriter
+> kubebuilder create api --group trickstercache --version v1alpha1 --kind TricksterBackend
+> kubebuilder create api --group trickstercache --version v1alpha1 --kind TricksterCache
+> kubebuilder create api --group trickstercache --version v1alpha1 --kind TricksterTracingConfig
+> kubebuilder create api --group trickstercache --version v1alpha1 --kind TricksterRule
+> kubebuilder create api --group trickstercache --version v1alpha1 --kind TricksterRequestRewriter
 > make generate manifests fmt
 ```
 
@@ -29,11 +29,11 @@ kubectl apply -f config/samples/
 ```
 
 2. Build and push your image to the location specified by `IMG`:
-	
+
 ```sh
 make docker-build docker-push IMG=<some-registry>/trickster-config:tag
 ```
-	
+
 3. Deploy the controller to the cluster with the image specified by `IMG`:
 
 ```sh

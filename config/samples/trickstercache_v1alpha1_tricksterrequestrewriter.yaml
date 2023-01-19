@@ -1,0 +1,12 @@
+apiVersion: trickstercache.org/v1alpha1
+kind: TricksterRequestRewriter
+metadata:
+  labels:
+    app.kubernetes.io/name: tricksterrequestrewriter
+    app.kubernetes.io/instance: tricksterrequestrewriter-sample
+    app.kubernetes.io/part-of: trickster-config
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: trickster-config
+  name: tricksterrequestrewriter-sample
+spec:
+  # TODO(user): Add fields here

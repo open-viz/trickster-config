@@ -18,20 +18,22 @@ package main
 
 import (
 	"flag"
-	"github.com/trickstercache/trickster/v2/cmd/trickster/config"
-	"k8s.io/klog/v2"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
 	// to ensure that exec-entrypoint and run can make use of them.
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 
-	trickstercachev1alpha1 "go.openviz.dev/trickster-config/api/v1alpha1"
-	"go.openviz.dev/trickster-config/controllers"
+	"github.com/trickstercache/trickster/v2/cmd/trickster/config"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
+	"k8s.io/klog/v2"
 	ctrl "sigs.k8s.io/controller-runtime"
+	"sigs.k8s.io/controller-runtime/pkg/healthz"
+
+	trickstercachev1alpha1 "go.openviz.dev/trickster-config/api/v1alpha1"
+	"go.openviz.dev/trickster-config/controllers"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -95,51 +97,16 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "Trickster")
 		os.Exit(1)
 	}
-	//if err = (&controllers.BackendReconciler{
-	//	Client: mgr.GetClient(),
-	//	Scheme: mgr.GetScheme(),
-	//}).SetupWithManager(mgr); err != nil {
-	//	setupLog.Error(err, "unable to create controller", "controller", "Backend")
-	//	os.Exit(1)
-	//}
-	//if err = (&controllers.CacheReconciler{
-	//	Client: mgr.GetClient(),
-	//	Scheme: mgr.GetScheme(),
-	//}).SetupWithManager(mgr); err != nil {
-	//	setupLog.Error(err, "unable to create controller", "controller", "Cache")
-	//	os.Exit(1)
-	//}
-	//if err = (&controllers.TracingConfigReconciler{
-	//	Client: mgr.GetClient(),
-	//	Scheme: mgr.GetScheme(),
-	//}).SetupWithManager(mgr); err != nil {
-	//	setupLog.Error(err, "unable to create controller", "controller", "TracingConfig")
-	//	os.Exit(1)
-	//}
-	//if err = (&controllers.RuleReconciler{
-	//	Client: mgr.GetClient(),
-	//	Scheme: mgr.GetScheme(),
-	//}).SetupWithManager(mgr); err != nil {
-	//	setupLog.Error(err, "unable to create controller", "controller", "Rule")
-	//	os.Exit(1)
-	//}
-	//if err = (&controllers.RequestRewriterReconciler{
-	//	Client: mgr.GetClient(),
-	//	Scheme: mgr.GetScheme(),
-	//}).SetupWithManager(mgr); err != nil {
-	//	setupLog.Error(err, "unable to create controller", "controller", "RequestRewriter")
-	//	os.Exit(1)
-	//}
 	//+kubebuilder:scaffold:builder
 
-	//if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {
-	//	setupLog.Error(err, "unable to set up health check")
-	//	os.Exit(1)
-	//}
-	//if err := mgr.AddReadyzCheck("readyz", healthz.Ping); err != nil {
-	//	setupLog.Error(err, "unable to set up ready check")
-	//	os.Exit(1)
-	//}
+	if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {
+		setupLog.Error(err, "unable to set up health check")
+		os.Exit(1)
+	}
+	if err := mgr.AddReadyzCheck("readyz", healthz.Ping); err != nil {
+		setupLog.Error(err, "unable to set up ready check")
+		os.Exit(1)
+	}
 
 	setupLog.Info("starting manager")
 	if err := mgr.Start(ctrl.SetupSignalHandler()); err != nil {
