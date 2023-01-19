@@ -44,7 +44,7 @@ import (
 )
 
 // TODO(tamal): Must be configurable
-const configDir = "/tmp/trickster"
+const configDir = "/etc/trickster/conf.d"
 
 // TricksterReconciler reconciles a Trickster object
 type TricksterReconciler struct {
@@ -249,12 +249,15 @@ func (r *TricksterReconciler) writeConfig(ctx context.Context, ns string, sp *co
 		return err
 	}
 	for _, item := range sp.Items {
-		path := filepath.Join(configDir, item.Path)
+		path := item.Path
+		if !filepath.IsAbs(path) {
+			path = filepath.Join(configDir, path)
+		}
 		err = os.MkdirAll(filepath.Dir(path), 0755)
 		if err != nil {
 			return err
 		}
-		err = os.WriteFile(filepath.Join(configDir, item.Path), secret.Data[item.Key], 0444)
+		err = os.WriteFile(path, secret.Data[item.Key], 0444)
 		if err != nil {
 			return err
 		}
