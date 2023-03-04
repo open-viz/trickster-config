@@ -75,6 +75,7 @@ require (
 	github.com/rs/xid v1.2.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/tinylib/msgp v1.1.6 // indirect
+	go.bytebuilders.dev/license-proxyserver v0.0.3
 	go.bytebuilders.dev/license-verifier v0.12.2 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.34.0 // indirect
 	go.opentelemetry.io/otel v1.9.0 // indirect

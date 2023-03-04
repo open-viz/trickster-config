@@ -217,7 +217,7 @@ func wellKnownFile() string {
 }
 
 func readCredentialsFile(ctx context.Context, filename string, params CredentialsParams) (*DefaultCredentials, error) {
-	b, err := ioutil.ReadFile(filename)
+	b, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
