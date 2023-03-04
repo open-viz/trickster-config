@@ -17,7 +17,7 @@ func NopCloser(r io.Reader) io.ReadCloser {
 }
 
 func ReadAll(r io.Reader) ([]byte, error) {
-	return ioutil.ReadAll(r)
+	return io.ReadAll(r)
 }
 
 func ReadDir(dirname string) ([]string, error) {
@@ -35,13 +35,13 @@ func ReadDir(dirname string) ([]string, error) {
 }
 
 func ReadFile(filename string) ([]byte, error) {
-	return ioutil.ReadFile(filename)
+	return os.ReadFile(filename)
 }
 
 func MkdirTemp(dir, pattern string) (string, error) {
-	return ioutil.TempDir(dir, pattern)
+	return os.MkdirTemp(dir, pattern)
 }
 
 func WriteFile(filename string, data []byte) error {
-	return ioutil.WriteFile(filename, data, 0644)
+	return os.WriteFile(filename, data, 0644)
 }
