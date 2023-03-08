@@ -346,7 +346,7 @@ func WithFile(f io.ReadCloser) PrepareDecorator {
 		return PreparerFunc(func(r *http.Request) (*http.Request, error) {
 			r, err := p.Prepare(r)
 			if err == nil {
-				b, err := io.ReadAll(f)
+				b, err := ioutil.ReadAll(f)
 				if err != nil {
 					return r, err
 				}

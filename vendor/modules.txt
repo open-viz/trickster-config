@@ -346,7 +346,7 @@ github.com/trickstercache/trickster/v2/pkg/util/middleware
 github.com/trickstercache/trickster/v2/pkg/util/strings
 github.com/trickstercache/trickster/v2/pkg/util/timeconv
 github.com/trickstercache/trickster/v2/pkg/util/yamlx
-# go.bytebuilders.dev/license-verifier v0.12.2
+# go.bytebuilders.dev/license-verifier v0.12.3-0.20230307083111-f683a7d93a33
 ## explicit; go 1.18
 go.bytebuilders.dev/license-verifier/apis/licenses
 go.bytebuilders.dev/license-verifier/info
@@ -802,7 +802,7 @@ k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# kubeops.dev/cluster-connector v0.0.3
+# kubeops.dev/cluster-connector v0.0.4-0.20230307095706-a6657dbd1250
 ## explicit; go 1.18
 kubeops.dev/cluster-connector/pkg/shared
 kubeops.dev/cluster-connector/pkg/transport

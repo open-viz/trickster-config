@@ -394,8 +394,8 @@ github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9de
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
-go.bytebuilders.dev/license-verifier v0.12.2 h1:S+4BMR1E7Ii6qDYKDYzt9+VgMRsOyQvdOiwHhLJ6wCc=
-go.bytebuilders.dev/license-verifier v0.12.2/go.mod h1:ahObOawJ+6AuFZUBZi6Dp3g4Q9AboqD97eH+bQPsLQw=
+go.bytebuilders.dev/license-verifier v0.12.3-0.20230307083111-f683a7d93a33 h1:SvzcfZSfFhowyOu/LTys41a/uSuUqQ6pwQP28s6MDeo=
+go.bytebuilders.dev/license-verifier v0.12.3-0.20230307083111-f683a7d93a33/go.mod h1:PTTlWgokzoisBezn2zt+JeGkhTJZ0flvLzdhHVBy86M=
 go.etcd.io/bbolt v1.3.6 h1:/ecaJf0sk1l4l6V4awd65v2C3ILy7MSj+s/x1ADCIMU=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
@@ -797,8 +797,8 @@ k8s.io/kube-openapi v0.0.0-20220803164354-a70c9af30aea h1:3QOH5+2fGsY8e1qf+GIFpg
 k8s.io/kube-openapi v0.0.0-20220803164354-a70c9af30aea/go.mod h1:C/N6wCaBHeBHkHUesQOQy2/MZqGgMAFPqGsGQLdbZBU=
 k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73 h1:H9TCJUUx+2VA0ZiD9lvtaX8fthFsMoD+Izn93E/hm8U=
 k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
-kubeops.dev/cluster-connector v0.0.3 h1:77SS6q08/YJbeOEYSilgjxmvQwhrrfN9idsUtN/pzCg=
-kubeops.dev/cluster-connector v0.0.3/go.mod h1:4csDyyh+mIRi1q7FpDJaDblM5ErRczML1WEgIFCrml0=
+kubeops.dev/cluster-connector v0.0.4-0.20230307095706-a6657dbd1250 h1:756pWirVvNuRxxteb46kgnSTYklAQPf61Mvupeetxj8=
+kubeops.dev/cluster-connector v0.0.4-0.20230307095706-a6657dbd1250/go.mod h1:f7SrWNX0qbyhgKsRWlpl6AHS1lM5AH2GjBcQ5unS+Dk=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
