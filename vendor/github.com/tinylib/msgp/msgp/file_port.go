@@ -20,7 +20,7 @@ func ReadFile(dst Unmarshaler, file *os.File) error {
 		return u.DecodeMsg(NewReader(file))
 	}
 
-	data, err := io.ReadAll(file)
+	data, err := ioutil.ReadAll(file)
 	if err != nil {
 		return err
 	}

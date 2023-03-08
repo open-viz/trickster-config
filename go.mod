@@ -75,8 +75,7 @@ require (
 	github.com/rs/xid v1.2.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/tinylib/msgp v1.1.6 // indirect
-	go.bytebuilders.dev/license-proxyserver v0.0.3
-	go.bytebuilders.dev/license-verifier v0.12.2 // indirect
+	go.bytebuilders.dev/license-verifier v0.12.3-0.20230307083111-f683a7d93a33 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.34.0 // indirect
 	go.opentelemetry.io/otel v1.9.0 // indirect
 	go.opentelemetry.io/otel/exporters/jaeger v1.9.0 // indirect
@@ -106,7 +105,7 @@ require (
 	k8s.io/component-base v0.25.3 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803164354-a70c9af30aea // indirect
 	k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73 // indirect
-	kubeops.dev/cluster-connector v0.0.3 // indirect
+	kubeops.dev/cluster-connector v0.0.4-0.20230307095706-a6657dbd1250 // indirect
 	sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
 )
