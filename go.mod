@@ -1,6 +1,6 @@
 module go.openviz.dev/trickster-config
 
-go 1.19
+go 1.23.0
 
 require (
 	github.com/onsi/ginkgo/v2 v2.1.6
@@ -87,12 +87,12 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.23.0 // indirect
-	golang.org/x/crypto v0.14.0 // indirect
-	golang.org/x/net v0.17.0 // indirect
+	golang.org/x/crypto v0.36.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/oauth2 v0.13.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
-	golang.org/x/term v0.13.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/term v0.30.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	golang.org/x/time v0.2.0 // indirect
 	gomodules.xyz/cert v1.5.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
