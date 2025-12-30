@@ -33,6 +33,7 @@ import (
 	"k8s.io/klog/v2"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
+	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
 	trickstercachev1alpha1 "go.openviz.dev/trickster-config/api/v1alpha1"
 	"go.openviz.dev/trickster-config/controllers"
@@ -66,9 +67,10 @@ func main() {
 	ctrl.SetLogger(klog.NewKlogr())
 
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
-		Scheme:                 scheme,
-		MetricsBindAddress:     metricsAddr,
-		Port:                   9443,
+		Scheme: scheme,
+		Metrics: metricsserver.Options{
+			BindAddress: metricsAddr,
+		},
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
 		LeaderElectionID:       "95c6021a.org",
